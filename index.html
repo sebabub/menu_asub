@@ -58,6 +58,16 @@
             grid-column: 1 / -1;
             text-align: center;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-date-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo {
@@ -74,19 +84,17 @@
         }
 
         .title {
-            display: inline-block;
-            vertical-align: middle;
             color: white;
             font-size: 3.5rem;
             font-weight: bold;
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
         }
 
         .date {
             color: #87CEEB;
-            font-size: 2.5rem;
-            margin-top: 10px;
+            font-size: 3rem;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
@@ -112,7 +120,7 @@
         .section-title {
             display: flex;
             align-items: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #FFD700;
             margin-bottom: 10px;
@@ -122,7 +130,7 @@
         }
 
         .section-title.events-title {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             margin-bottom: 25px;
             border-bottom: none;
             padding-bottom: 0;
@@ -130,7 +138,7 @@
         }
 
         .section-icon {
-            font-size: 32px;
+            font-size: 48px;
             margin-right: 15px;
         }
 
@@ -141,7 +149,7 @@
             margin-bottom: 15px;
             padding: 15px 20px;
             border-radius: 15px;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #1e3a5f;
             font-weight: bold;
         }
@@ -183,7 +191,7 @@
         }
 
         .menu-item .description {
-            font-size: 1.3rem;
+            font-size: 1.9rem;
             color: #2c5aa0;
             font-weight: normal;
             margin-top: 3px;
@@ -195,7 +203,7 @@
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             min-width: 80px;
             text-align: center;
         }
@@ -207,7 +215,7 @@
             margin-bottom: 12px;
             padding: 12px 0;
             color: white;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -222,14 +230,14 @@
         }
 
         .drink-icon {
-            font-size: 32px;
+            font-size: 40px;
             margin-right: 15px;
         }
 
         .drink-item .price {
             color: #FFD700;
             font-weight: bold;
-            font-size: 1.6rem;
+            font-size: 1.9rem;
         }
 
         .event-item {
@@ -237,7 +245,7 @@
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
-            font-size: 1.4rem;
+            font-size: 1.7rem;
         }
 
         .event-date {
@@ -247,7 +255,7 @@
         .event-desc {
             text-align: right;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.8rem;
         }
 
         /* Nouvelle structure pour la 3ème colonne */
@@ -265,7 +273,7 @@
         }
 
         .announcement-title {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             margin-bottom: 15px;
             display: flex;
@@ -300,14 +308,14 @@
         }
 
         .announcement-text {
-            font-size: 1.4rem;
+            font-size: 1.7rem;
             margin-bottom: 5px;
             font-weight: bold;
             text-align: center;
         }
 
         .announcement-sub {
-            font-size: 1.4rem;
+            font-size: 1.7rem;
             font-style: italic;
             text-align: center;
         }
@@ -321,14 +329,15 @@
                 <img src="logo_asub.png" alt="Logo Rugby Waterloo" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             
-            <div class="title">MENU DU JOUR</div>
+            <div class="title-date-container">
+                <div class="title">MENU DU JOUR</div>
+                <div class="date">MARDI 24 Juin</div>
+            </div>
             
             <!-- Logo droit -->
             <div class="logo">
                 <img src="logo_asub.png" alt="Logo Rugby Waterloo" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
-            
-            <div class="date">MARDI 24 Juin</div>
         </div>
 
         <!-- Section Restauration -->
@@ -343,14 +352,19 @@
                 <div class="price">2,50€</div>
             </div>
             
-            <div class="menu-item normal">
-                <div class="name">🍕 Pizza</div>
-                <div class="price">8,00€</div>
+            <div class="menu-item highlighted">
+                <div class="name">🌭 Saucisse sèche/cervelas</div>
+                <div class="price">2,50€</div>
             </div>
             
             <div class="menu-item highlighted">
                 <div class="name">🧀 Assiette de fromage</div>
                 <div class="price">5,00€</div>
+            </div>
+            
+            <div class="menu-item normal">
+                <div class="name">🍕 Pizza</div>
+                <div class="price">8,00€</div>
             </div>
             
             <div class="menu-item highlighted">
@@ -361,15 +375,10 @@
                 <div class="price">8,00€</div>
             </div>
             
-            <div class="menu-item highlighted">
-                <div class="name">🌭 Saucisse sèche/cervelas</div>
-                <div class="price">2,50€</div>
-            </div>
-            
             <div class="menu-item plat-du-jour">
                 <div class="name">
-                    🍝 PLAT DU JOUR :
-                    <div class="description">Lasagnes bolo maison (Prépa 30min)</div>
+                    🍝 PLAT DU JOUR
+                    <div class="description">Pas aujourd'hui 😢</div>
                 </div>
                 <div class="price">12,00€</div>
             </div>
@@ -384,16 +393,16 @@
             
             <div class="drink-item">
                 <div class="name">
-                    <span class="drink-icon">🍸</span>
-                    Cocktails
+                    <span class="drink-icon">🍺</span>
+                    Bavik
                 </div>
-                <div class="price">8,00€</div>
+                <div class="price">2,50€</div>
             </div>
             
             <div class="drink-item">
                 <div class="name">
-                    <span class="drink-icon">🍺</span>
-                    Bavik
+                    <span class="drink-icon">🥤</span>
+                    Softs
                 </div>
                 <div class="price">2,50€</div>
             </div>
@@ -416,10 +425,10 @@
             
             <div class="drink-item">
                 <div class="name">
-                    <span class="drink-icon">🥤</span>
-                    Softs
+                    <span class="drink-icon">🍸</span>
+                    Cocktails
                 </div>
-                <div class="price">2,50€</div>
+                <div class="price">8,00€</div>
             </div>
         </div>
 
@@ -428,17 +437,17 @@
             <!-- Annonces -->
             <div class="section third-column-section">
                 <div class="announcement-title">
-                    <span style="font-size: 2.5rem; margin-right: 10px;">📢</span> ANNONCES
+                    <span style="font-size: 3rem; margin-right: 10px;">📢</span> ANNONCES
                 </div>
                 
                 <div class="announcement-grid">
                     <div class="announcement-item volunteers">
-                        <div class="announcement-text">Charlotte cherche des bénévoles</div>
+                        <div class="announcement-text">🙋‍♀️ Charlotte cherche des bénévoles</div>
                         <div class="announcement-sub">Nouveaux membres bienvenus!</div>
                     </div>
                     
                     <div class="announcement-item new-beers">
-                        <div class="announcement-text">NOUVEAU : Goûtez nos Bertinchamps</div>
+                        <div class="announcement-text">🍺 NOUVEAU : Goûtez nos Bertinchamps</div>
                         <div class="announcement-sub">(IPA, Passion Zéro, Pamplemousse)</div>
                     </div>
                 </div>
@@ -447,7 +456,7 @@
             <!-- Section Événements -->
             <div class="section third-column-section">
                 <div class="section-title events-title">
-                    <span style="font-size: 2.5rem; margin-right: 10px;">📅</span> PROCHAINS ÉVÉNEMENTS
+                    <span style="font-size: 3rem; margin-right: 10px;">📅</span> PROCHAINS ÉVÉNEMENTS
                 </div>
                 
                 <div class="event-item">
