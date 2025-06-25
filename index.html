@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu du Jour - Rugby Waterloo ASUB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Décoration de fond */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background: rgba(173, 216, 230, 0.3);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 8%;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 0, 0.4);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .title {
+            display: inline-block;
+            vertical-align: middle;
+            color: white;
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .date {
+            color: #87CEEB;
+            font-size: 2.5rem;
+            margin-top: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .section.restauration {
+            background: none;
+            backdrop-filter: none;
+            border: none;
+        }
+
+        .section.drinks {
+            background: none;
+            border: none;
+            backdrop-filter: none;
+            padding: 30px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        .section-title.events-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-bottom: none;
+            padding-bottom: 0;
+            justify-content: center;
+        }
+
+        .section-icon {
+            font-size: 32px;
+            margin-right: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1.8rem;
+            color: #1e3a5f;
+            font-weight: bold;
+        }
+
+        .menu-item.highlighted {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item.normal {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .menu-item.plat-du-jour {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #FFD700;
+            animation: pulseGlow 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+                transform: scale(1);
+            }
+        }
+
+        .menu-item .name {
+            flex: 1;
+        }
+
+        .menu-item .description {
+            font-size: 1.3rem;
+            color: #2c5aa0;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+
+        .menu-item .price {
+            background: #1e3a5f;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .drink-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px 0;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .drink-item:last-child {
+            border-bottom: none;
+        }
+
+        .drink-item .name {
+            display: flex;
+            align-items: center;
+        }
+
+        .drink-icon {
+            font-size: 32px;
+            margin-right: 15px;
+        }
+
+        .drink-item .price {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.6rem;
+        }
+
+        .event-item {
+            color: white;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.4rem;
+        }
+
+        .event-date {
+            font-weight: bold;
+        }
+
+        .event-desc {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+
+        /* Nouvelle structure pour la 3ème colonne */
+        .third-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .section.third-column-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .announcement-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .announcement-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .announcement-item {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid;
+            color: white;
+        }
+
+        .announcement-item.volunteers {
+            background: rgba(135, 206, 235, 0.3);
+            border-color: #87CEEB;
+        }
+
+        .announcement-item.new-beers {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #FFD700;
+        }
+
+        .announcement-text {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .announcement-sub {
+            font-size: 1.4rem;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Logo gauche -->
+            <div class="logo">
+                <img src="logo_asub.png" alt="Logo Rugby Waterloo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            
+            <div class="title">MENU DU JOUR</div>
+            
+            <!-- Logo droit -->
+            <div class="logo">
+                <img src="logo_asub.png" alt="Logo Rugby Waterloo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            
+            <div class="date">MARDI 24 Juin</div>
+        </div>
+
+        <!-- Section Restauration -->
+        <div class="section restauration">
+            <div class="section-title">
+                <span class="section-icon">🍽️</span>
+                RESTAURATION
+            </div>
+            
+            <div class="menu-item highlighted">
+                <div class="name">🥪 Croque Monsieur</div>
+                <div class="price">2,50€</div>
+            </div>
+            
+            <div class="menu-item normal">
+                <div class="name">🍕 Pizza</div>
+                <div class="price">8,00€</div>
+            </div>
+            
+            <div class="menu-item highlighted">
+                <div class="name">🧀 Assiette de fromage</div>
+                <div class="price">5,00€</div>
+            </div>
+            
+            <div class="menu-item highlighted">
+                <div class="name">
+                    🍤 Mix de croquettes
+                    <div class="description">(fromage ou viande)</div>
+                </div>
+                <div class="price">8,00€</div>
+            </div>
+            
+            <div class="menu-item highlighted">
+                <div class="name">🌭 Saucisse sèche/cervelas</div>
+                <div class="price">2,50€</div>
+            </div>
+            
+            <div class="menu-item plat-du-jour">
+                <div class="name">
+                    🍝 PLAT DU JOUR :
+                    <div class="description">Lasagnes bolo maison (Prépa 30min)</div>
+                </div>
+                <div class="price">12,00€</div>
+            </div>
+        </div>
+
+        <!-- Section Boissons -->
+        <div class="section drinks">
+            <div class="section-title">
+                <span class="section-icon">🥤</span>
+                BOISSONS
+            </div>
+            
+            <div class="drink-item">
+                <div class="name">
+                    <span class="drink-icon">🍸</span>
+                    Cocktails
+                </div>
+                <div class="price">8,00€</div>
+            </div>
+            
+            <div class="drink-item">
+                <div class="name">
+                    <span class="drink-icon">🍺</span>
+                    Bavik
+                </div>
+                <div class="price">2,50€</div>
+            </div>
+            
+            <div class="drink-item">
+                <div class="name">
+                    <span class="drink-icon">🍻</span>
+                    Bières Spéciales
+                </div>
+                <div class="price">4,50€</div>
+            </div>
+            
+            <div class="drink-item">
+                <div class="name">
+                    <span class="drink-icon">🍾</span>
+                    Cava (Verre/Bouteille)
+                </div>
+                <div class="price">5€ / 24€</div>
+            </div>
+            
+            <div class="drink-item">
+                <div class="name">
+                    <span class="drink-icon">🥤</span>
+                    Softs
+                </div>
+                <div class="price">2,50€</div>
+            </div>
+        </div>
+
+        <!-- Troisième colonne -->
+        <div class="third-column">
+            <!-- Annonces -->
+            <div class="section third-column-section">
+                <div class="announcement-title">
+                    <span style="font-size: 2.5rem; margin-right: 10px;">📢</span> ANNONCES
+                </div>
+                
+                <div class="announcement-grid">
+                    <div class="announcement-item volunteers">
+                        <div class="announcement-text">Charlotte cherche des bénévoles</div>
+                        <div class="announcement-sub">Nouveaux membres bienvenus!</div>
+                    </div>
+                    
+                    <div class="announcement-item new-beers">
+                        <div class="announcement-text">NOUVEAU : Goûtez nos Bertinchamps</div>
+                        <div class="announcement-sub">(IPA, Passion Zéro, Pamplemousse)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Événements -->
+            <div class="section third-column-section">
+                <div class="section-title events-title">
+                    <span style="font-size: 2.5rem; margin-right: 10px;">📅</span> PROCHAINS ÉVÉNEMENTS
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">26 JUIN - 21H15</div>
+                    <div class="event-desc">Prépa 2026 + BBQ</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">27 JUIN - 17H30</div>
+                    <div class="event-desc">Fête de clôture ASUB</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">28 JUIN - 12H00</div>
+                    <div class="event-desc">Tournoi Paris</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
